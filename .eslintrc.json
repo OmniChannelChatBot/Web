@@ -1,0 +1,11 @@
+{
+    "root": true,
+    "extends": [
+        "plugin:vue/essential",
+        "@vue/airbnb",
+        "@vue/typescript"
+    ],
+    "parserOptions": {
+        "parser": "@typescript-eslint/parser"
+    }
+}
