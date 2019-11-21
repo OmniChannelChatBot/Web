@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const colors = require('vuetify/es5/util/colors').default
 
 module.exports = {
@@ -7,7 +8,7 @@ module.exports = {
   */
   srcDir: 'src/',
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
+    titleTemplate: `%s - ${process.env.npm_package_name}`,
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
@@ -37,7 +38,7 @@ module.exports = {
   */
   buildModules: [
     '@nuxt/typescript-build',
-    '@nuxtjs/vuetify',
+    '@nuxtjs/vuetify'
   ],
   /*
   ** Nuxt.js modules
@@ -72,7 +73,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
+    extend(_config, _ctx) {
     }
   }
 }

@@ -1,10 +1,13 @@
-import Express from 'express';
-import Consola from 'consola';
-const { Nuxt, Builder } = require('nuxt');
-const app = Express();
+import Express from 'express'
+import Consola from 'consola'
+
+const { Nuxt, Builder } = require('nuxt')
+
+const app = Express()
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
+
 config.dev = process.env.NODE_ENV !== 'production'
 
 async function start() {
