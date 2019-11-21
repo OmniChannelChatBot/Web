@@ -3,3 +3,8 @@ dist: trusty
 os: linux
 node_js: 
   - node
+install:
+  - yarn install
+script:
+  - yarn build
+  - yarn test
