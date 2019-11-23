@@ -1,7 +1,7 @@
 {
-  "name": "web",
+  "name": "simple-chat",
   "version": "1.0.0",
-  "description": "web channel chat",
+  "description": "Simple Chat",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -14,7 +14,9 @@
     "consola": "^2.11.0",
     "cross-env": "^6.0.3",
     "express": "^4.17.1",
-    "nuxt": "^2.10.2"
+    "nuxt": "^2.10.2",
+    "vue": "^2.6.10",
+    "vuetify": "^2.1.11"
   },
   "devDependencies": {
     "@nuxt/types": "^0.3.4",
@@ -30,7 +32,8 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-vue": "^6.0.1",
     "jest": "^24.9.0",
-    "ts-jest": "^24.1.0",
+    "ts-jest": "^24.2.0",
+    "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",
     "vue-jest": "^4.0.0-0"
   }

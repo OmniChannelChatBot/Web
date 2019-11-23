@@ -15,5 +15,16 @@ module.exports = {
     // обработка файлов с расширением `*.ts` с помощью `ts-jest`
     '^.+\\.tsx?$': 'ts-jest'
   },
-  testURL: 'http://localhost/'
+  testRegex: '.*.test.[t]sx?$',
+  testURL: 'http://localhost/',
+  setupFiles: [
+    '<rootDir>/test/__setup__/index.js'
+  ],
+  collectCoverage: true,
+  collectCoverageFrom: [
+    '**/*.{ts,tsx}',
+    '**/*.vue',
+    '!**/node_modules/**',
+    '!**/typings/**'
+  ]
 }
