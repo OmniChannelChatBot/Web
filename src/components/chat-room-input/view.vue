@@ -4,8 +4,8 @@
       <v-text-field
         color="accent"
         placeholder="User"
-        :value="control.userId"
-        @change="onTextFieldChange"
+        :value="control.userName"
+        @change="onUserNameChange"
       />
     </v-col>
     <v-col cols="12" md="9">
@@ -18,14 +18,14 @@
             auto-grow
             rows="1"
             row-height="15"
-            :value="control.message"
-            @change="onTextAreaChange"
+            :value="control.userMessage"
+            @change="onUserMessageChange"
           />
         </v-col>
         <v-col md="auto">
           <v-btn
             color="accent"
-            @click="onButtonClick"
+            @click="onSendMessageClick"
           >
             Send
           </v-btn>
@@ -35,24 +35,4 @@
   </v-row>
 </template>
 
-<script>
-export default {
-  props: {
-    control: {
-      type: Object,
-      required: true
-    }
-  },
-  methods: {
-    onTextFieldChange(text) {
-      this.$emit('changeUserId', text)
-    },
-    onTextAreaChange(text) {
-      this.$emit('changeUserMesage', text)
-    },
-    onButtonClick() {
-      this.$emit('clickUserSendMessage')
-    }
-  }
-}
-</script>
+<script src="./index.ts" lang="ts"/>

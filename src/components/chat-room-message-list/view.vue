@@ -12,19 +12,4 @@
   </v-col>
 </template>
 
-<script>
-import ChatRoomMessage from '@/components/ChatRoomMessage.vue'
-
-export default {
-  components: {
-    ChatRoomMessage
-  },
-  props: {
-    messages: {
-      type: Array,
-      default: () => [],
-      required: true
-    }
-  }
-}
-</script>
+<script src="./index.ts" lang="ts"/>

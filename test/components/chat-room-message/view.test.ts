@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils'
-import ChatRoomMessage from '@/components/ChatRoomMessage.vue'
+import ChatRoomMessage from '@/components/chat-room-message/view.vue'
 
-describe('ChatRoomMessage.vue', () => {
+describe('chat-room-message', () => {
   test('render text message pass', () => {
     const messageText = 'new message'
     const wrapper = shallowMount(ChatRoomMessage, {

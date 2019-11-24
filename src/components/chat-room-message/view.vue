@@ -15,17 +15,4 @@
   </v-row>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    owner: {
-      type: Boolean,
-      required: true
-    },
-    text: {
-      type: String,
-      required: true
-    }
-  }
-}
-</script>
+<script src="./index.ts" lang="ts"/>
