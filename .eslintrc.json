@@ -8,6 +8,7 @@
         "space-before-function-paren": [
             "error",
             "never"
-        ]
+        ],
+        "class-methods-use-this": "off"
     }
 }

@@ -2,7 +2,7 @@
 
 | branch  |  link |
 |---|---|
-| master  |  [![Build Status](https://travis-ci.org/OmniChannelChatBot/Web.svg?branch=master)](https://travis-ci.org/OmniChannelChatBot/Web) |
+| master  |  [![Build Status](https://travis-ci.com/OmniChannelChatBot/Web.svg?branch=master)](https://travis-ci.com/OmniChannelChatBot/Web) |
 |  dev |   |
 
 > 
