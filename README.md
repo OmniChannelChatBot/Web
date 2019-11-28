@@ -7,6 +7,8 @@
 
 > 
 
+Use Node.js 12.13.1 LTS version, to see your current version "node -v"
+
 ## Build Setup
 
 ``` bash
