@@ -9,7 +9,7 @@
     "lint": "eslint --color --ext .tsx,.ts,.js,.vue .",
     "test": "jest"
   },
-  "dependencies": {    
+  "dependencies": {
     "@microsoft/signalr": "^3.0.1",
     "consola": "^2.11.0",
     "cross-env": "^6.0.3",
