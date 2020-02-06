@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { Prop } from 'vue-property-decorator'
-import { IChatRoomMessage } from '../chat-room-message'
 import ChatRoomMessage from '@/components/chat-room-message/view.vue'
+import { IChatRoomMessage } from '../chat-room-message'
 
 export interface IChatRoomMessageList {
   messages?: IChatRoomMessage[]
