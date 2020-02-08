@@ -1,7 +1,10 @@
+import { OAuthApiServiceClient, SignInCommand } from '@/api/oauth-api-service-client'
+import Cookies from 'js-cookie'
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import { Emit, Prop } from 'vue-property-decorator'
-import { OAuthApiServiceClient, SignInCommand } from '@/api/oauth-api-service-client'
+import { Emit } from 'vue-property-decorator'
+
+const config = require('config')
 
 export interface ISignInProps {
   loading: boolean;
@@ -17,37 +20,57 @@ export interface ISignInEvents {
 
 @Component
 export default class SignIn extends Vue implements ISignInProps, ISignInEvents {
-  @Prop({ type: String })
-  public username?: string
+  private oauthApiServiceClient: OAuthApiServiceClient
 
-  @Prop({ type: String })
-  public password?: string
+  public username: string
+  public password: string
 
-  public loading = false;
+  public loading: boolean;
+  public error: string;
+
+  public constructor() {
+    super()
+    this.username = ''
+    this.password = ''
+    this.loading = false
+    this.error = ''
+    this.oauthApiServiceClient = new OAuthApiServiceClient(config.oauthServiceUrl)
+  }
 
   @Emit()
   public onUsernameChange(username: string): string {
+    this.username = username
     return username
   }
 
   @Emit()
   public onPasswordChange(password: string): string {
+    this.password = password
     return password
   }
 
   @Emit()
-  public async onSignInClick():Promise<void> {
-    this.loading = true
+  public async onSignInClick(): Promise<void> {
+    try {
+      this.loading = true
+      this.error = ''
 
-    const client = new OAuthApiServiceClient()
+      const signInCommand = new SignInCommand({
+        username: this.username,
+        password: this.password
+      })
 
-    const command = new SignInCommand({
-      username: this.username!,
-      password: this.password!
-    })
+      const { accessToken, refreshToken } = await this.oauthApiServiceClient.signIn(signInCommand)
 
-    await client.signIn(command)
+      // TODO: Нужно подумать над безопасностью токенов, особенно рефреша
+      Cookies.set('accessToken', accessToken)
+      Cookies.set('refreshToken', refreshToken)
 
-    this.loading = false
+      this.$router.push('/')
+      this.loading = false
+    } catch ({ message }) {
+      this.loading = false
+      this.error = message
+    }
   }
 }

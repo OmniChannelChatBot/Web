@@ -1,7 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-const colors = require('vuetify/es5/util/colors').default
+import colors from 'vuetify/es5/util/colors'
 
-module.exports = {
+export default {
   mode: 'spa',
   /*
   ** Headers of the page
@@ -48,6 +47,8 @@ module.exports = {
   */
   modules: [
   ],
+  proxy: {
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
@@ -73,10 +74,14 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(_config, _ctx) {
+    extend(config) {
+      // eslint-disable-next-line no-param-reassign
+      config.externals = {
+        // global app config object
+        config: JSON.stringify({
+          oauthServiceUrl: 'http://localhost:5001'
+        })
+      }
     }
   }
 }
