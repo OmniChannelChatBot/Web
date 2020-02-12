@@ -1,5 +1,4 @@
 import { OAuthApiServiceClient, SignInCommand } from '@/api/oauth-api-service-client'
-import Cookies from 'js-cookie'
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import { Emit } from 'vue-property-decorator'
@@ -60,11 +59,7 @@ export default class SignIn extends Vue implements ISignInProps, ISignInEvents {
         password: this.password
       })
 
-      const { accessToken, refreshToken } = await this.oauthApiServiceClient.signIn(signInCommand)
-
-      // TODO: Нужно подумать над безопасностью токенов, особенно рефреша
-      Cookies.set('accessToken', accessToken)
-      Cookies.set('refreshToken', refreshToken)
+      await this.oauthApiServiceClient.signIn(signInCommand)
 
       this.$router.push('/')
       this.loading = false
