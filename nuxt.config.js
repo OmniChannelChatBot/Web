@@ -15,7 +15,7 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/app/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   /*
@@ -23,7 +23,8 @@ export default {
   */
   loading: { color: '#fff' },
   router: {
-    base: '/app'
+    // base: '/app'
+    middleware: 'auth'
   },
   /*
   ** Global CSS
@@ -48,6 +49,14 @@ export default {
   modules: [
   ],
   proxy: {
+  },
+  loaders: {
+    ts: {
+      silent: true
+    },
+    tsx: {
+      silent: true
+    }
   },
   /*
   ** vuetify module configuration

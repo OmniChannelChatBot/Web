@@ -25,6 +25,7 @@ module.exports = {
     '**/*.{ts,tsx}',
     '**/*.vue',
     '!**/node_modules/**',
-    '!**/typings/**'
+    '!**/typings/**',
+    '!**/api/**'
   ]
 }
