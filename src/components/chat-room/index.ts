@@ -1,98 +1,98 @@
-import { HubConnectionBuilder, HubConnection, LogLevel } from '@microsoft/signalr'
+import ChatRoomMessageInput from '@/components/chat-room-message-input/view.vue'
+import ChatRoomMessageList from '@/components/chat-room-message-list/view.vue'
+import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr'
 import { v4 } from 'uuid'
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import ChatRoomInput from '@/components/chat-room-input/view.vue'
-import ChatRoomMessageList from '@/components/chat-room-message-list/view.vue'
-import { ChatRoomInputControlType, IChatRoomInput } from '../chat-room-input'
 import { IChatRoomMessage } from '../chat-room-message'
+import { IChatRoomMessageInput } from '../chat-room-message-input'
 import { IChatRoomMessageList } from '../chat-room-message-list'
 
-type HubChatMessageType = {
-  guid?: string;
-  id?: number;
-  chatRoomId?: number;
-  text?: string;
-  userId?: string;
-  type?: number;
-  userName: string;
-  userGuid?: string;
-  date?: Date;
+const config = require('config')
+
+type ChatMessageType = {
+  chatRoomId: number;
+  username?: string;
+  text: string;
+  type: number;
 };
 
 @Component({
   components: {
     ChatRoomMessageList,
-    ChatRoomInput
+    ChatRoomMessageInput
   }
 })
-export default class ChatRoom extends Vue implements IChatRoomMessageList, IChatRoomInput {
-  private hubConnection: HubConnection | null = null
+export default class ChatRoom extends Vue implements IChatRoomMessageList, IChatRoomMessageInput {
+  private hubConnection: HubConnection
 
-  public control: ChatRoomInputControlType = {
-    userName: '',
-    userMessage: ''
-  }
+  public message?: string
+  public messages: IChatRoomMessage[]
 
-  public messages: IChatRoomMessage[] = []
-
-  public created() {
+  public constructor() {
+    super()
+    this.message = ''
+    this.messages = []
     this.hubConnection = new HubConnectionBuilder()
       // TODO: нужно подтягивать из настроек во время SSR
-      .withUrl('http://localhost:49877/chat')
+      .withUrl(`${config.serverServiceUrl}/chat`)
       .withAutomaticReconnect()
       // TODO: временно для отладки
       .configureLogging(LogLevel.Information)
       .build()
 
     this.hubConnection
-      .on('MessageReceived', (message: HubChatMessageType, id: string) => {
-        console.log(message, id)
+      .on('ChatMessageReceived', (username: string, chatMessage: ChatMessageType) => {
         this.messages.push({
-          owner: false,
-          text: message.text
+          text: chatMessage.text
         })
+
+        console.log(username)
       })
 
     this.hubConnection
-      .on('Notify', (message: string) => {
-        console.log(message)
+      .on('Connected', (text: string) => {
+        console.log(text)
+      })
+
+    this.hubConnection
+      .on('Disconnected', (text: string) => {
+        console.log(text)
       })
 
     this.hubConnection
       .start()
+      .then(() => console.log('Соединение открыто'))
       .catch(err => console.log(err))
 
     this.hubConnection
       .onclose(() => console.log('Соединение закрыто'))
   }
 
-  public onUserNameChange(text: string): void {
-    this.control.userName = text
+  public onChatRoomMessageChange(message: string): void {
+    this.message = message
   }
 
-  public onUserMessageChange(text: string): void {
-    this.control.userMessage = text
-  }
+  public onChatRoomMessageSend(): void {
+    this.messages.push({
+      text: this.message
+    })
 
-  public onSendMessageClick(): void {
-    if (this.hubConnection) {
-      const message: HubChatMessageType = {
-        guid: v4(),
-        userName: this.control.userName,
-        text: this.control.userMessage
-      }
-
-      this.hubConnection
-        .send('newMessage', message)
-        .then(() => {
-          this.messages.push({
-            owner: true,
-            text: this.control.userMessage
-          })
-
-          this.control.userMessage = ''
-        })
+    const chatMessage: ChatMessageType = {
+      chatRoomId: 1,
+      username: 'zexsm',
+      type: 1,
+      text: this.message!
     }
+
+    this.hubConnection
+      .send('newChatMessage', chatMessage)
+      .then(() => {
+        this.messages.push({
+          text: this.message
+        })
+
+        this.message = ''
+      })
   }
 }

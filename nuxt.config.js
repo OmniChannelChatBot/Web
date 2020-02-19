@@ -24,7 +24,7 @@ export default {
   loading: { color: '#fff' },
   router: {
     // base: '/app'
-    middleware: 'auth'
+    // middleware: 'auth'
   },
   /*
   ** Global CSS
@@ -88,6 +88,7 @@ export default {
       config.externals = {
         // global app config object
         config: JSON.stringify({
+          serverServiceUrl: 'http://localhost:5005',
           oauthServiceUrl: 'http://localhost:5001'
         })
       }

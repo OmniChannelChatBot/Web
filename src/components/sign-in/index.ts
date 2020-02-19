@@ -60,6 +60,7 @@ export default class SignIn extends Vue implements ISignInProps, ISignInEvents {
       })
 
       await this.oauthApiServiceClient.signIn(signInCommand)
+      const user = await this.oauthApiServiceClient.getUser()
 
       this.$router.push('/')
       this.loading = false

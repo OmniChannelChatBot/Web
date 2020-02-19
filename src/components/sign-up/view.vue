@@ -17,10 +17,7 @@
           </v-col>
           <v-col cols="2">
             <v-row justify="end">
-              <v-hover
-                v-slot:default="{ hover }"
-                close-delay="300"
-              >
+              <v-hover v-slot:default="{ hover }" close-delay="300">
                 <v-btn
                   text
                   icon

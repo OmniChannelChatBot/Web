@@ -10,7 +10,8 @@
     "start": "nuxt-ts start",
     "lint": "eslint --color --ext .tsx,.ts,.js,.vue .",
     "lint-fix": "eslint --fix --color --ext .tsx,.ts,.js,.vue .",
-    "test": "jest"
+    "test": "jest",
+    "nswag": "cd ./nswag && nswag run"
   },
   "dependencies": {
     "@microsoft/signalr": "^3.0.1",

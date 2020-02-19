@@ -26,6 +26,9 @@ $ yarn lint
 
 # testing
 $ yarn test
+
+# auto generate api clients
+$ yarn nswag
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

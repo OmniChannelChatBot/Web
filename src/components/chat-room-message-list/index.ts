@@ -15,5 +15,5 @@ export interface IChatRoomMessageList {
 })
 export default class ChatRoomMessageList extends Vue implements IChatRoomMessageList {
   @Prop({ type: Array, required: true })
-  public messages?: IChatRoomMessage[]
+  public messages!: IChatRoomMessage[]
 }

@@ -3,7 +3,6 @@
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
-      "json": null
       "url": "https://localhost:5000/api-doc/OAuth/swagger.json",
       "output": null
     }

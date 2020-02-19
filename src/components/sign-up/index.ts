@@ -93,7 +93,7 @@ export default class SignUp extends Vue implements ISignUpProps, ISignUpEvents {
         lastName: this.lastName,
         password: this.password,
         email: this.email,
-        type: UserType._1
+        type: UserType.Person
       })
 
       await this.oauthApiServiceClient.signUp(signUpCommand)
