@@ -1,16 +1,17 @@
 <template>
-  <v-layout column>
-    <chat-room-message-list
-      :messages="messages"
-    />
-    <v-divider />
-    <chat-room-input
-      :control="control"
-      @on-user-id-change="onUserNameChange"
-      @on-user-message-change="onUserMessageChange"
-      @on-send-message-click="onSendMessageClick"
-    />
-  </v-layout>
+  <v-row class="fill-height" align="end" justify="center">
+    <v-col>
+      <chat-room-message-list
+        :messages="messages"
+      />
+      <v-divider />
+      <chat-room-message-input
+        :value="message"
+        @on-chat-room-message-change="onChatRoomMessageChange"
+        @on-chat-room-message-send="onChatRoomMessageSend"
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <script src="./index.ts" lang="ts"/>
