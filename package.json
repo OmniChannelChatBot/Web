@@ -11,7 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@microsoft/signalr": "^3.0.1",
+    "@microsoft/signalr": "^3.1.2",
     "consola": "^2.11.0",
     "cross-env": "^6.0.3",
     "express": "^4.17.1",
