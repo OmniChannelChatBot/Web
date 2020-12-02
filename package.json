@@ -23,7 +23,7 @@
     "vuetify": "^2.1.11"
   },
   "devDependencies": {
-    "@nuxt/types": "^0.3.4",
+    "@nuxt/types": "^2.14.8",
     "@nuxt/typescript-build": "^0.3.4",
     "@nuxt/typescript-runtime": "^0.2.4",
     "@nuxtjs/eslint-config-typescript": "^0.1.3",
